@@ -10,7 +10,7 @@ public class Keys : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            other.gameObject.GetComponent<PlayerController>().AddKey();
+            FindObjectOfType<LevelOneManager>().AddKey();
             img.sprite = spriteKeyFull;
             Destroy(this.gameObject);
         }

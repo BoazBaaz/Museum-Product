@@ -6,12 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     DefaultInputActions input;
-    Vector3 playerMovementInput = new Vector3();
 
     [SerializeField] float m_MoveSpeed = 10f;
     [SerializeField] Vector2 m_MouseSensitivity = new Vector2(10.0f, 10.0f);
-    [SerializeField] Vector2 m_MouseClampY = new Vector2(-80.0f, 50.0f);
-    [SerializeField] [Range(0, 4)] int m_Keys = 0;
+    //[SerializeField] Vector2 m_MouseClampY = new Vector2(-80.0f, 50.0f);
     
     // Start is called before the first frame update
     void Start() {
@@ -21,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        // Create a new Vector3 for the player movement input
+        Vector3 playerMovementInput = new Vector3();
+
         // Get the current rotation of the player and camera
         Vector3 playerRotation = gameObject.transform.localEulerAngles;
         Vector3 camRotation = Camera.main.transform.localEulerAngles;
@@ -37,9 +38,5 @@ public class PlayerController : MonoBehaviour
         transform.Translate(playerMovementInput);
         transform.localRotation = Quaternion.Euler(playerRotation);
         Camera.main.transform.localRotation = Quaternion.Euler(camRotation);
-    }
-
-    public void AddKey() {
-        m_Keys++;
     }
 }
