@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 408811209962665063}
   - component: {fileID: 1112566991558334124}
   m_Layer: 0
-  m_Name: ManagerLevelOne
+  m_Name: WhiteRoomManagers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
