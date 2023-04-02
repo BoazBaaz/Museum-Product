@@ -5,23 +5,44 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private DefaultInputActions input;
+    private enum LastStep {
+        left = 0,
+        right = 1
+    };
 
-    [SerializeField] private float m_MoveSpeed = 10f;
-    [SerializeField] private Vector2 m_MouseSensitivity = new Vector2(10.0f, 10.0f);
-    [SerializeField] private Vector2 m_MouseClamp = new Vector2(310.0f, 50.0f);
-    [SerializeField] private GameObject m_FootStepLSprite, m_FootStepRSprite;
+    private DefaultInputActions input;
 
     private Vector2 moveInput;
     private Vector2 lookInput;
 
+    [Header("Input")]
+    [SerializeField] private float m_MoveSpeed = 10f;
+    [SerializeField] private Vector2 m_MouseSensitivity = new Vector2(10.0f, 10.0f);
+    [SerializeField] private Vector2 m_MouseClamp = new Vector2(310.0f, 50.0f);
+
+    [Header("Footsteps")]
+
+    [SerializeField] private GameObject m_StepLPrefab;
+    [SerializeField] private GameObject m_StepRPrefab;
+    [SerializeField] private Transform m_StepLTransform;
+    [SerializeField] private Transform m_StepRTransform;
+    [SerializeField] private float m_StepLife = 5.0f;
+    [SerializeField] private float m_StepDistance = 2.0f;
+    [SerializeField] private Vector3 m_LastStepPoint;
+    [SerializeField] private LastStep m_LastStep = LastStep.left;
+
     // Start is called before the first frame update
     private void Start() {
+        // Enable the player input
         input = new DefaultInputActions();
         input.Enable();
-
+        
+        // Hide and lock the cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Set the lastStepPoint to the current player position
+        m_LastStepPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -48,6 +69,27 @@ public class PlayerController : MonoBehaviour
 
         // Update the player position
         transform.Translate(new Vector3(moveInput.x * m_MoveSpeed * Time.deltaTime, 0.0f, moveInput.y * m_MoveSpeed * Time.deltaTime));
+
+        // Check if the distance between the lastStepPoint and the player is larger the the stepDistance
+        if (Vector3.Distance(m_LastStepPoint, transform.position) >= m_StepDistance) {
+            // Check what the last placed footstep was
+            if (m_LastStep ==  LastStep.left) {
+                // Create the footstep, and give the stepLife value to the stepDestroy script
+                GameObject stepObject = Instantiate(m_StepRPrefab, m_StepRTransform.position, transform.rotation);
+                stepObject.GetComponent<StepDestroy>().LifeTime(m_StepLife);
+
+                m_LastStep = LastStep.right;
+            } else if (m_LastStep == LastStep.right) {
+                // Create the footstep, and give the stepLife value to the stepDestroy script
+                GameObject stepObject = Instantiate(m_StepLPrefab, m_StepLTransform.position, transform.rotation);
+                stepObject.GetComponent<StepDestroy>().LifeTime(m_StepLife);
+
+                m_LastStep = LastStep.left;
+            }
+
+            // Set a new lastStepPoint
+            m_LastStepPoint = transform.position;
+        }
     }
 
     public void Move(InputAction.CallbackContext callbackContent) {
