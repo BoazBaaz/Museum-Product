@@ -31,21 +31,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 m_LastStepPoint;
     [SerializeField] private LastStep m_LastStep = LastStep.left;
 
-    // Start is called before the first frame update
     private void Start() {
         // Enable the player input
         input = new DefaultInputActions();
         input.Enable();
-        
-        // Hide and lock the cursor
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
 
         // Set the lastStepPoint to the current player position
         m_LastStepPoint = transform.position;
     }
 
-    // Update is called once per frame
     private void Update() {
         // Get the current rotation of the player and camera
         Vector3 playerRotation = transform.localEulerAngles;
@@ -55,7 +49,6 @@ public class PlayerController : MonoBehaviour
         playerRotation.y += lookInput.x * m_MouseSensitivity.x * Time.deltaTime;
         camRotation.x -= lookInput.y * m_MouseSensitivity.y * Time.deltaTime;
 
-        Debug.Log(camRotation);
         // Clamp the camera rotation
         if (camRotation.x > 180.0f) {
             camRotation.x = Mathf.Max(camRotation.x, m_MouseClamp[0]);

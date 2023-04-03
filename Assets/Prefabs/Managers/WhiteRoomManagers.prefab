@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8835932151702851664}
   - component: {fileID: 408811209962665063}
-  - component: {fileID: 1112566991558334124}
+  - component: {fileID: 3313516088643072480}
+  - component: {fileID: 4795218317845214406}
   m_Layer: 0
   m_Name: WhiteRoomManagers
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3b0e5be0ee0794a8170ceb4508de0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1112566991558334124
+--- !u!114 &3313516088643072480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,8 +55,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8835932151702851665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55cb5d5f2ea63142b5c31c791f2c8fe, type: 3}
+  m_Script: {fileID: 11500000, guid: de0a176b5df835e409d7d3de5ea01860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Visable: 0
+  m_Locked: 1
+--- !u!114 &4795218317845214406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835932151702851665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d642d5edafca6f64ca78f56e0c65c913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Keys: 0
-  m_DoorCollider: {fileID: 5456727405849949604, guid: 70cf342f412519d40a724fbc94156e07, type: 3}
+  m_TopText: {fileID: 0}
+  m_DoorCollider: {fileID: 0}

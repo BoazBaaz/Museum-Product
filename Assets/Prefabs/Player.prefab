@@ -391,7 +391,7 @@ MonoBehaviour:
   m_StepRPrefab: {fileID: 8548905716682540832, guid: 59fd75d9ea829f74ab4be09924e6fc92, type: 3}
   m_StepLTransform: {fileID: 4932763010624605437}
   m_StepRTransform: {fileID: 2892140262733264551}
-  m_StepLife: 5
+  m_StepLife: 60
   m_StepDistance: 2
   m_LastStepPoint: {x: 0, y: 0, z: 0}
   m_LastStep: 0
