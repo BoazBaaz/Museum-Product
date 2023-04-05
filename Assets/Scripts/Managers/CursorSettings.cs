@@ -19,7 +19,6 @@ public class CursorSettings : MonoBehaviour {
     {
         // Set the cursor for this scene
         Cursor.visible = m_Visable;
-        Cursor.visible = false;
         Cursor.lockState = m_Locked ? CursorLockMode.Locked :CursorLockMode.None;
     }
 
