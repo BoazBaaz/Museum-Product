@@ -85,10 +85,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="callbackContent"></param>
     public void Move(InputAction.CallbackContext callbackContent) {
         moveInput = callbackContent.ReadValue<Vector2>();
     }
 
+    /// <remark>
+    /// This function updates the lookInput variable only when the event is called for the coresponding key presses.
+    /// </remark>
+    /// <list type="events">
+    /// <item>callBackContent</item>
+    /// </list>
+    /// <code>lookInput = callbackContent.ReadValue<Vector2>();</code>
+    /// <example>Look(InputAction.Look.CallbackContent())</example>
     public void Look(InputAction.CallbackContext callbackContent) {
         lookInput = callbackContent.ReadValue<Vector2>();
     }
